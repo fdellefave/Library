@@ -29,7 +29,15 @@ public class BookServiceImplement implements BookService {
     @Override
     public Book create(Book book) {
 
-        return bookRepository.save(book);
+        Book bookCreate = new Book(
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPrice(),
+                book.getDescription(),
+                book.getFkCategory()
+        );
+
+        return bookRepository.save(bookCreate);
     }
 
     @Override
@@ -44,6 +52,8 @@ public class BookServiceImplement implements BookService {
         foundBook.get().setTitle(book.getTitle());
         foundBook.get().setAuthor(book.getAuthor());
         foundBook.get().setPrice(book.getPrice());
+        foundBook.get().setDescription(book.getDescription());
+        foundBook.get().setFkCategory(book.getFkCategory());
 
         bookRepository.save(foundBook.get());
 

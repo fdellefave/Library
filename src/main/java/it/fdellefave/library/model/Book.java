@@ -20,14 +20,18 @@ public class Book {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name = "fk_category")
     private int fkCategory;
 
 
-    public Book(String title, String author, Double price, int fkCategory) {
+    public Book(String title, String author, Double price, String description, int fkCategory) {
         this.title = title;
         this.author = author;
         this.price = price;
+        this.description = description;
         this.fkCategory = fkCategory;
     }
 
@@ -74,6 +78,14 @@ public class Book {
         this.price = price;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -81,6 +93,7 @@ public class Book {
                 ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", price=" + price +
+                ", description=" + description +
                 ", fkCategory=" + fkCategory +
                 '}';
     }
