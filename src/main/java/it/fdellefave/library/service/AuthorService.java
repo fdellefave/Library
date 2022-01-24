@@ -1,19 +1,19 @@
 package it.fdellefave.library.service;
 
 
-import it.fdellefave.library.model.Author;
+import it.fdellefave.library.model.AuthorEntity;
 
 import java.util.Optional;
 
 public interface AuthorService {
 
-    Iterable<Author> getAll();
+    Iterable<AuthorEntity> getAll();
 
-    Optional<Author> getById(int id);
+    Optional<AuthorEntity> getById(int id);
 
-    Author create(Author author);
+    AuthorEntity create(AuthorEntity author);
 
-    Optional<Author> update(int id, Author author);
+    Optional<AuthorEntity> update(int id, AuthorEntity author);
 
     Boolean delete(int id);
 

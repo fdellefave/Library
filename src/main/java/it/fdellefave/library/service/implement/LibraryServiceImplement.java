@@ -1,6 +1,6 @@
 package it.fdellefave.library.service.implement;
 
-import it.fdellefave.library.model.Library;
+import it.fdellefave.library.model.LibraryEntity;
 import it.fdellefave.library.service.LibraryService;
 import org.springframework.stereotype.Service;
 
@@ -10,22 +10,22 @@ import java.util.Optional;
 public class LibraryServiceImplement implements LibraryService {
 
     @Override
-    public Iterable<Library> getAll() {
+    public Iterable<LibraryEntity> getAll() {
         return null;
     }
 
     @Override
-    public Optional<Library> getById(int id) {
+    public Optional<LibraryEntity> getById(int id) {
         return Optional.empty();
     }
 
     @Override
-    public Library create(Library library) {
+    public LibraryEntity create(LibraryEntity libraryEntity) {
         return null;
     }
 
     @Override
-    public Optional<Library> update(int id, Library library) {
+    public Optional<LibraryEntity> update(int id, LibraryEntity libraryEntity) {
         return Optional.empty();
     }
 

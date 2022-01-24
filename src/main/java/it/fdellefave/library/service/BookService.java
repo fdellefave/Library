@@ -1,18 +1,18 @@
 package it.fdellefave.library.service;
 
-import it.fdellefave.library.model.Book;
+import it.fdellefave.library.model.BookEntity;
 
 import java.util.Optional;
 
 public interface BookService {
 
-    Iterable<Book> getAll();
+    Iterable<BookEntity> getAll();
 
-    Optional<Book> getById(int id);
+    Optional<BookEntity> getById(int id);
 
-    Book create(Book book);
+    BookEntity create(BookEntity book);
 
-    Optional<Book> update(int id, Book book);
+    Optional<BookEntity> update(int id, BookEntity bookEntity);
 
     Boolean delete(int id);
 

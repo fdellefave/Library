@@ -3,7 +3,7 @@ package it.fdellefave.library.model;
 import javax.persistence.*;
 
 @Entity
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,20 +16,16 @@ public class User {
     @Column(name = "surname")
     private String surname;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String name, String surname) {
+    public UserEntity(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }
 
     public int getIdUser() {
         return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
     }
 
     public String getName() {

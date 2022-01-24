@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "author")
-public class Author {
+public class AuthorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,22 +25,18 @@ public class Author {
     @Column(name = "local_birth")
     private String localBirth;
 
-    public Author(String name, String surname, Date dateBirth, String localBirth) {
+    public AuthorEntity(String name, String surname, Date dateBirth, String localBirth) {
         this.name = name;
         this.surname = surname;
         this.dateBirth = dateBirth;
         this.localBirth = localBirth;
     }
 
-    public Author() {
+    public AuthorEntity() {
     }
 
     public int getIdAuthor() {
         return idAuthor;
-    }
-
-    public void setIdAuthor(int idAuthor) {
-        this.idAuthor = idAuthor;
     }
 
     public String getName() {

@@ -1,6 +1,6 @@
 package it.fdellefave.library.service.implement;
 
-import it.fdellefave.library.model.Author;
+import it.fdellefave.library.model.AuthorEntity;
 import it.fdellefave.library.repository.AuthorRepository;
 import it.fdellefave.library.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +15,21 @@ public class AuthorServiceImplement implements AuthorService {
     private AuthorRepository authorRepository;
 
 
-    public Iterable<Author> getAll() {
+    public Iterable<AuthorEntity> getAll() {
 
         return authorRepository.findAll();
     }
 
     @Override
-    public Optional<Author> getById(int id) {
+    public Optional<AuthorEntity> getById(int id) {
 
         return authorRepository.findById(id);
     }
 
     @Override
-    public Author create(Author author) {
+    public AuthorEntity create(AuthorEntity author) {
 
-        Author authorCreate = new Author(
+        AuthorEntity authorCreate = new AuthorEntity(
                 author.getName(),
                 author.getSurname(),
                 author.getDateBirth(),
@@ -40,18 +40,18 @@ public class AuthorServiceImplement implements AuthorService {
     }
 
     @Override
-    public Optional<Author> update(int id, Author author) {
+    public Optional<AuthorEntity> update(int id, AuthorEntity authorEntity) {
 
-        Optional<Author> foundAuthor = authorRepository.findById(id);
+        Optional<AuthorEntity> foundAuthor = authorRepository.findById(id);
 
         if (!(foundAuthor.isPresent())) {
             return Optional.empty();
         }
 
-        foundAuthor.get().setName(author.getName());
-        foundAuthor.get().setSurname(author.getSurname());
-        foundAuthor.get().setDateBirth(author.getDateBirth());
-        foundAuthor.get().setLocalBirth(author.getLocalBirth());
+        foundAuthor.get().setName(authorEntity.getName());
+        foundAuthor.get().setSurname(authorEntity.getSurname());
+        foundAuthor.get().setDateBirth(authorEntity.getDateBirth());
+        foundAuthor.get().setLocalBirth(authorEntity.getLocalBirth());
 
         authorRepository.save(foundAuthor.get());
 
@@ -61,7 +61,7 @@ public class AuthorServiceImplement implements AuthorService {
     @Override
     public Boolean delete(int id) {
 
-        Optional<Author> foundAuthor = authorRepository.findById(id);
+        Optional<AuthorEntity> foundAuthor = authorRepository.findById(id);
 
         if (foundAuthor.isPresent()) {
             authorRepository.delete(foundAuthor.get());

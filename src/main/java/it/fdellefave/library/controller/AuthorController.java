@@ -1,7 +1,7 @@
 package it.fdellefave.library.controller;
 
 
-import it.fdellefave.library.model.Author;
+import it.fdellefave.library.model.AuthorEntity;
 import it.fdellefave.library.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,28 +11,28 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/author")
-public class AuthorController implements Controller<Author> {
+public class AuthorController implements Controller<AuthorEntity> {
 
     @Autowired
     private AuthorService service;
 
     @Override
-    public Iterable<Author> getAll() {
+    public Iterable<AuthorEntity> getAll() {
         return service.getAll();
     }
 
     @Override
-    public Optional<Author> getById(int id) {
+    public Optional<AuthorEntity> getById(int id) {
         return service.getById(id);
     }
 
     @Override
-    public Author create(Author element) {
+    public AuthorEntity create(AuthorEntity element) {
         return null;
     }
 
     @Override
-    public Author update(Author element, int id) {
+    public AuthorEntity update(AuthorEntity element, int id) {
         return null;
     }
 

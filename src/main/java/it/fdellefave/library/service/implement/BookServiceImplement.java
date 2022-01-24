@@ -1,6 +1,6 @@
 package it.fdellefave.library.service.implement;
 
-import it.fdellefave.library.model.Book;
+import it.fdellefave.library.model.BookEntity;
 import it.fdellefave.library.repository.BookRepository;
 import it.fdellefave.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,45 +15,41 @@ public class BookServiceImplement implements BookService {
     private BookRepository bookRepository;
 
 
-    public Iterable<Book> getAll() {
+    public Iterable<BookEntity> getAll() {
 
         return bookRepository.findAll();
     }
 
     @Override
-    public Optional<Book> getById(int id) {
+    public Optional<BookEntity> getById(int id) {
 
         return bookRepository.findById(id);
     }
 
     @Override
-    public Book create(Book book) {
+    public BookEntity create(BookEntity book) {
 
-        Book bookCreate = new Book(
+        BookEntity bookCreate = new BookEntity(
                 book.getTitle(),
-                book.getAuthor(),
                 book.getPrice(),
-                book.getDescription(),
-                book.getFkCategory()
+                book.getDescription()
         );
 
         return bookRepository.save(bookCreate);
     }
 
     @Override
-    public Optional<Book> update(int id, Book book) {
+    public Optional<BookEntity> update(int id, BookEntity book) {
 
-        Optional<Book> foundBook = bookRepository.findById(id);
+        Optional<BookEntity> foundBook = bookRepository.findById(id);
 
         if(!(foundBook.isPresent())){
             return Optional.empty();
         }
 
         foundBook.get().setTitle(book.getTitle());
-        foundBook.get().setAuthor(book.getAuthor());
         foundBook.get().setPrice(book.getPrice());
         foundBook.get().setDescription(book.getDescription());
-        foundBook.get().setFkCategory(book.getFkCategory());
 
         bookRepository.save(foundBook.get());
 
@@ -63,7 +59,7 @@ public class BookServiceImplement implements BookService {
     @Override
     public Boolean delete(int id) {
 
-        Optional<Book> foundBook = bookRepository.findById(id);
+        Optional<BookEntity> foundBook = bookRepository.findById(id);
 
         if(foundBook.isPresent()){
             bookRepository.delete(foundBook.get());

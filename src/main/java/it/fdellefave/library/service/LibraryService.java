@@ -1,17 +1,18 @@
 package it.fdellefave.library.service;
 
-import it.fdellefave.library.model.Library;
+import it.fdellefave.library.model.LibraryEntity;
+
 import java.util.Optional;
 
 public interface LibraryService {
 
-    Iterable<Library> getAll();
+    Iterable<LibraryEntity> getAll();
 
-    Optional<Library> getById(int id);
+    Optional<LibraryEntity> getById(int id);
 
-    Library create(Library library);
+    LibraryEntity create(LibraryEntity libraryEntity);
 
-    Optional<Library> update(int id, Library library);
+    Optional<LibraryEntity> update(int id, LibraryEntity libraryEntity);
 
     Boolean delete(int id);
 }

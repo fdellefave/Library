@@ -1,18 +1,18 @@
 package it.fdellefave.library.service;
 
-import it.fdellefave.library.model.User;
+import it.fdellefave.library.model.UserEntity;
 
 import java.util.Optional;
 
 public interface UserService {
 
-    Iterable<User> getAll();
+    Iterable<UserEntity> getAll();
 
-    Optional<User> getById(int id);
+    Optional<UserEntity> getById(int id);
 
-    User create(User user);
+    UserEntity create(UserEntity userEntity);
 
-    Optional<User> update(int id, User user);
+    Optional<UserEntity> update(int id, UserEntity userEntity);
 
     Boolean delete(int id);
 }
