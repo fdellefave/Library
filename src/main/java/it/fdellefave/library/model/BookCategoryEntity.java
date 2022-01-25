@@ -1,10 +1,13 @@
 package it.fdellefave.library.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tpl_book_category")
 public class BookCategoryEntity {
+
+    // -- FIELD DECLARATION
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,12 +17,27 @@ public class BookCategoryEntity {
     @Column(name = "category")
     private String category;
 
+
+
+    // -- ENTITY DECLARATION
+
+    @OneToMany(mappedBy = "bookCategoryEntity")
+    private List<BookEntity> bookEntityList;
+
+
+
+    // -- CONSTRUCTOR
+
     public BookCategoryEntity(String category) {
         this.category = category;
     }
 
     public BookCategoryEntity() {
     }
+
+
+
+    // -- GETTERS AND SETTERS
 
     public int getIdBookCategory() {
         return idBookCategory;
@@ -32,4 +50,13 @@ public class BookCategoryEntity {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public List<BookEntity> getBookEntityList() {
+        return bookEntityList;
+    }
+
+    public void setBookEntityList(List<BookEntity> bookEntityList) {
+        this.bookEntityList = bookEntityList;
+    }
+
 }

@@ -1,13 +1,14 @@
 package it.fdellefave.library.model;
 
 
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "rental_book_user")
 public class RentalEntity {
+
+    // -- FIELD DECLARATION
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,16 +18,34 @@ public class RentalEntity {
     @Column(name = "rental_date")
     private Date rentalDate;
 
-    @ManyToOne
-    @JoinColumn(name = "fk_book")
-    private BookEntity fkBook;
+
+
+    // -- ENTITY DECLARATION
 
     @ManyToOne
     @JoinColumn(name = "fk_user")
-    private UserEntity fkUser;
+    private UserEntity userRentalEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_book")
+    private BookEntity bookRentalEntity;
+
+
+
+    // -- CONSTRUCTOR
+
+    public RentalEntity(Date rentalDate, UserEntity userEntity) {
+        this.rentalDate = rentalDate;
+        this.userRentalEntity = userEntity;
+    }
 
     public RentalEntity() {
     }
+
+
+
+    // -- GETTERS AND SETTERS
+
 
     public int getIdRental() {
         return idRental;
@@ -41,19 +60,19 @@ public class RentalEntity {
         this.rentalDate = rentalDate;
     }
 
-    public BookEntity getFkBook() {
-        return fkBook;
+    public UserEntity getUserRentalEntity() {
+        return userRentalEntity;
     }
 
-    public void setFkBook(BookEntity fkBook) {
-        this.fkBook = fkBook;
+    public void setUserRentalEntity(UserEntity userEntity) {
+        this.userRentalEntity = userEntity;
     }
 
-    public UserEntity getFkUser() {
-        return fkUser;
+    public BookEntity getBookEntity() {
+        return bookRentalEntity;
     }
 
-    public void setFkUser(UserEntity fkUser) {
-        this.fkUser = fkUser;
+    public void setBookEntity(BookEntity bookEntity) {
+        this.bookRentalEntity = bookEntity;
     }
 }

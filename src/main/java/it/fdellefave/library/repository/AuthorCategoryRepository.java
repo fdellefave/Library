@@ -1,9 +1,9 @@
 package it.fdellefave.library.repository;
 
-import it.fdellefave.library.model.LibraryEntity;
+import it.fdellefave.library.model.AuthorEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LibraryRepository extends CrudRepository<LibraryEntity,Integer> {
+public interface AuthorCategoryRepository extends CrudRepository<AuthorEntity,Integer> {
 }

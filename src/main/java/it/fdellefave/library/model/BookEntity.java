@@ -2,9 +2,13 @@ package it.fdellefave.library.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "book")
 public class BookEntity {
+
+    // -- FIELD DECLARATION
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +26,21 @@ public class BookEntity {
 
 
 
+    // -- ENTITY DECLARATION
+
+    @ManyToOne
+    @JoinColumn(name = "fk_book_category")
+    private BookCategoryEntity bookCategoryEntity;
+
+    @OneToMany(mappedBy = "bookAuthorEntity")
+    private List<AuthorEntity> authorEntityList;
+
+    @OneToMany(mappedBy = "bookRentalEntity")
+    private List<RentalEntity> rentalEntityList;
+
+
+
+    // -- CONSTRUCTOR
 
     public BookEntity(String title, Double price, String description) {
         this.title = title;
@@ -33,10 +52,12 @@ public class BookEntity {
     }
 
 
+
+    // -- GETTERS AND SETTERS
+
     public int getIdBook() {
         return idBook;
     }
-
 
     public String getTitle() {
         return title;
@@ -45,7 +66,6 @@ public class BookEntity {
     public void setTitle(String title) {
         this.title = title;
     }
-
 
     public Double getPrice() {
         return price;
@@ -63,14 +83,27 @@ public class BookEntity {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "idBook=" + idBook +
-                ", title='" + title + '\'' +
-                ", author='" + author + '\'' +
-                ", price=" + price +
-                ", description=" + description +
-                '}';
+    public List<AuthorEntity> getAuthorEntityList() {
+        return authorEntityList;
+    }
+
+    public void setAuthorEntityList(List<AuthorEntity> authorEntityList) {
+        this.authorEntityList = authorEntityList;
+    }
+
+    public BookCategoryEntity getBookCategoryEntity() {
+        return bookCategoryEntity;
+    }
+
+    public void setBookCategoryEntity(BookCategoryEntity bookCategoryEntity) {
+        this.bookCategoryEntity = bookCategoryEntity;
+    }
+
+    public List<RentalEntity> getRentalEntityList() {
+        return rentalEntityList;
+    }
+
+    public void setRentalEntityList(List<RentalEntity> rentalEntityList) {
+        this.rentalEntityList = rentalEntityList;
     }
 }

@@ -4,6 +4,8 @@ import it.fdellefave.library.model.BookEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BookRepository extends CrudRepository<BookEntity,Integer> {
 
@@ -14,5 +16,8 @@ public interface BookRepository extends CrudRepository<BookEntity,Integer> {
 //
 //    @Query(value = "SELECT * FROM library.book WHERE description = :parametro1 and id = :parametro2", nativeQuery = true)
 //    List<Book> findByDescrizioneAndidlibro(@Param("parametro1") String descrizione, @Param("parametro2") int id);
+
+//  @QUA DEVI FA A QUERY
+  //  public List<BookEntity> prenotaLibroRepository();
 
 }

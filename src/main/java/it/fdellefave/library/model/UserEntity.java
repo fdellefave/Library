@@ -1,9 +1,13 @@
 package it.fdellefave.library.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Table(name = "user")
 public class UserEntity {
+
+    // -- FIELD DECLARATION
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +20,29 @@ public class UserEntity {
     @Column(name = "surname")
     private String surname;
 
-    public UserEntity() {
-    }
+
+
+
+    // -- ENTITY DECLARATION
+
+    @OneToMany(mappedBy = "userRentalEntity")
+    private List<RentalEntity> rentalEntityList;
+
+
+
+    // -- CONSTRUCTOR
 
     public UserEntity(String name, String surname) {
         this.name = name;
         this.surname = surname;
     }
+
+    public UserEntity() {
+    }
+
+
+
+    // -- GETTERS AND SETTERS
 
     public int getIdUser() {
         return idUser;
@@ -42,5 +62,13 @@ public class UserEntity {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public List<RentalEntity> getRentalEntityList() {
+        return rentalEntityList;
+    }
+
+    public void setRentalEntityList(List<RentalEntity> rentalEntityList) {
+        this.rentalEntityList = rentalEntityList;
     }
 }

@@ -38,6 +38,7 @@ public class BookServiceImplement implements BookService {
         return bookRepository.save(bookCreate);
     }
 
+
     @Override
     public Optional<BookEntity> update(int id, BookEntity book) {
 
@@ -67,5 +68,16 @@ public class BookServiceImplement implements BookService {
 
         return false;
     }
-
 }
+
+
+
+      /* public String provaMetodo(){
+        bookRepository.prenotaLibroRepository();
+
+        //nel bookRepository devo fare la query per accedere ai dati instanziando un metodo, poi lo richiamo in un metodo del service
+        //da quale farò la logica per accedere ai dati corretti, quel metodo poi verra chiamato dal controller per visualizzarlo.
+
+       return null;
+    }
+*/
