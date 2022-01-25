@@ -21,7 +21,7 @@ public class BookCategoryEntity {
 
     // -- ENTITY DECLARATION
 
-    @OneToMany(mappedBy = "bookCategoryEntity")
+    @OneToMany(mappedBy = "bookCategoryEntity",fetch = FetchType.LAZY)
     private List<BookEntity> bookEntityList;
 
 

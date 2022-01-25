@@ -24,12 +24,14 @@ public class BookEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "quantity")
+    private int quantity;
 
 
     // -- ENTITY DECLARATION
 
-    @ManyToOne
-    @JoinColumn(name = "fk_book_category")
+    @ManyToOne()
+    @JoinColumn(name = "fk_book_category",referencedColumnName = "id_book_category")
     private BookCategoryEntity bookCategoryEntity;
 
     @OneToMany(mappedBy = "bookAuthorEntity")
@@ -39,13 +41,14 @@ public class BookEntity {
     private List<RentalEntity> rentalEntityList;
 
 
-
     // -- CONSTRUCTOR
 
-    public BookEntity(String title, Double price, String description) {
+    public BookEntity(String title, String description, Double price, int quantity, BookCategoryEntity bookCategory) {
         this.title = title;
-        this.price = price;
         this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+        this.bookCategoryEntity = bookCategory;
     }
 
     public BookEntity() {
@@ -57,6 +60,10 @@ public class BookEntity {
 
     public int getIdBook() {
         return idBook;
+    }
+
+    public void setIdBook(int idBook) {
+        this.idBook = idBook;
     }
 
     public String getTitle() {
@@ -83,13 +90,14 @@ public class BookEntity {
         this.description = description;
     }
 
-    public List<AuthorEntity> getAuthorEntityList() {
-        return authorEntityList;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setAuthorEntityList(List<AuthorEntity> authorEntityList) {
-        this.authorEntityList = authorEntityList;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
+
 
     public BookCategoryEntity getBookCategoryEntity() {
         return bookCategoryEntity;
@@ -97,6 +105,14 @@ public class BookEntity {
 
     public void setBookCategoryEntity(BookCategoryEntity bookCategoryEntity) {
         this.bookCategoryEntity = bookCategoryEntity;
+    }
+
+    public List<AuthorEntity> getAuthorEntityList() {
+        return authorEntityList;
+    }
+
+    public void setAuthorEntityList(List<AuthorEntity> authorEntityList) {
+        this.authorEntityList = authorEntityList;
     }
 
     public List<RentalEntity> getRentalEntityList() {

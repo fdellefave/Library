@@ -1,11 +1,13 @@
 package it.fdellefave.library.service.implement;
 
 import it.fdellefave.library.model.BookEntity;
+import it.fdellefave.library.repository.BookCategoryRepository;
 import it.fdellefave.library.repository.BookRepository;
 import it.fdellefave.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -14,6 +16,8 @@ public class BookServiceImplement implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private BookCategoryRepository bookCategoryRepo;
 
     public Iterable<BookEntity> getAll() {
 
@@ -29,10 +33,14 @@ public class BookServiceImplement implements BookService {
     @Override
     public BookEntity create(BookEntity book) {
 
+
         BookEntity bookCreate = new BookEntity(
                 book.getTitle(),
+                book.getDescription(),
                 book.getPrice(),
-                book.getDescription()
+                book.getQuantity(),
+                bookCategoryRepo.findById(book.getBookCategoryEntity().getIdBookCategory())
+                        .orElseThrow(()->new EntityNotFoundException("Categoria non trovata"))
         );
 
         return bookRepository.save(bookCreate);

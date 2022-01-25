@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
+//FE -> API -> ADAPTER APItoENTITY->ENTITY -> REPO(ENTITY);
+
+
 @RestController
 @RequestMapping("/book")
 public class BookController implements Controller<BookEntity>{
@@ -19,7 +22,6 @@ public class BookController implements Controller<BookEntity>{
 
         return service.getAll();
     }
-
 
     @GetMapping("/getById/{id}")
     public Optional<BookEntity> getById(@PathVariable int id) {

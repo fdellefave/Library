@@ -3,7 +3,6 @@ package it.fdellefave.library.service.implement;
 
 
 import it.fdellefave.library.model.BookCategoryEntity;
-import it.fdellefave.library.model.BookEntity;
 import it.fdellefave.library.repository.BookCategoryRepository;
 import it.fdellefave.library.service.BookCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class BookCategoryServiceImplement implements BookCategoryService {
 
     @Override
     public BookCategoryEntity create(BookCategoryEntity bookCategory) {
-        BookCategoryEntity bookCategoryCreate = new BookCategoryEntity("Narrativa");
+        BookCategoryEntity bookCategoryCreate = new BookCategoryEntity(bookCategory.getCategory());
         return bookCategoryRepository.save(bookCategoryCreate);
     }
 

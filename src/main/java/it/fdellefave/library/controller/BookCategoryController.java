@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/book")
+@RequestMapping("/bookCategory")
 public class BookCategoryController implements Controller<BookCategoryEntity>{
 
     @Autowired
@@ -29,16 +29,16 @@ public class BookCategoryController implements Controller<BookCategoryEntity>{
 
 
     @PostMapping("/create")
-    public BookCategoryEntity create(@RequestBody BookCategoryEntity book) {
+    public BookCategoryEntity create(@RequestBody BookCategoryEntity bookCategory) {
 
-        return service.create(book);
+        return service.create(bookCategory);
     }
 
 
     @PutMapping("/update/{id}")
-    public BookCategoryEntity update(@RequestBody BookCategoryEntity book, @PathVariable int id) {
+    public BookCategoryEntity update(@RequestBody BookCategoryEntity bookCategory, @PathVariable int id) {
 
-        return service.update(id, book).get();
+        return service.update(id, bookCategory).get();
     }
 
     @DeleteMapping("/delete/{id}")
