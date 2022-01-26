@@ -19,6 +19,8 @@ public class BookServiceImplement implements BookService {
     @Autowired
     private BookCategoryRepository bookCategoryRepo;
 
+
+
     public Iterable<BookEntity> getAll() {
 
         return bookRepository.findAll();
@@ -32,7 +34,6 @@ public class BookServiceImplement implements BookService {
 
     @Override
     public BookEntity create(BookEntity book) {
-
 
         BookEntity bookCreate = new BookEntity(
                 book.getTitle(),
@@ -57,8 +58,11 @@ public class BookServiceImplement implements BookService {
         }
 
         foundBook.get().setTitle(book.getTitle());
-        foundBook.get().setPrice(book.getPrice());
         foundBook.get().setDescription(book.getDescription());
+        foundBook.get().setPrice(book.getPrice());
+        foundBook.get().setQuantity(book.getQuantity());
+        foundBook.get().setBookCategoryEntity(bookCategoryRepo.findById(book.getBookCategoryEntity().getIdBookCategory())
+                .orElseThrow(()->new EntityNotFoundException("Categoria non trovata")));
 
         bookRepository.save(foundBook.get());
 

@@ -2,10 +2,11 @@ package it.fdellefave.library.controller;
 
 
 import it.fdellefave.library.model.AuthorEntity;
+import it.fdellefave.library.model.BookEntity;
 import it.fdellefave.library.service.AuthorService;
+import it.fdellefave.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -16,28 +17,35 @@ public class AuthorController implements Controller<AuthorEntity> {
     @Autowired
     private AuthorService service;
 
-    @Override
+    @GetMapping("/getAll")
     public Iterable<AuthorEntity> getAll() {
+
         return service.getAll();
     }
 
-    @Override
-    public Optional<AuthorEntity> getById(int id) {
+    @GetMapping("/getById/{id}")
+    public Optional<AuthorEntity> getById(@PathVariable int id) {
+
         return service.getById(id);
     }
 
-    @Override
-    public AuthorEntity create(AuthorEntity element) {
-        return null;
+
+    @PostMapping("/create")
+    public AuthorEntity create(@RequestBody AuthorEntity author) {
+
+        return service.create(author);
     }
 
-    @Override
-    public AuthorEntity update(AuthorEntity element, int id) {
-        return null;
+
+    @PutMapping("/update/{id}")
+    public AuthorEntity update(@RequestBody AuthorEntity author, @PathVariable int id) {
+
+        return service.update(id, author).get();
     }
 
-    @Override
-    public Boolean delete(int id) {
-        return null;
+    @DeleteMapping("/delete/{id}")
+    public Boolean delete(@PathVariable int id) {
+        Boolean flag = service.delete(id);
+        return flag;
     }
 }

@@ -3,10 +3,12 @@ package it.fdellefave.library.service.implement;
 
 import it.fdellefave.library.model.AuthorEntity;
 import it.fdellefave.library.repository.AuthorCategoryRepository;
+import it.fdellefave.library.repository.BookRepository;
 import it.fdellefave.library.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -14,6 +16,9 @@ public class AuthorServiceImplement implements AuthorService {
 
     @Autowired
     private AuthorCategoryRepository authorCategoryRepository;
+
+    @Autowired
+    private BookRepository bookRepository;
 
 
     public Iterable<AuthorEntity> getAll() {
@@ -34,7 +39,9 @@ public class AuthorServiceImplement implements AuthorService {
                 author.getName(),
                 author.getSurname(),
                 author.getDateBirth(),
-                author.getLocalBirth()
+                author.getLocalBirth(),
+                bookRepository.findById(author.getBookAuthorEntity().getIdBook())
+                        .orElseThrow(()-> new EntityNotFoundException("Libro non trovato"))
         );
 
         return authorCategoryRepository.save(authorCreate);
@@ -53,8 +60,8 @@ public class AuthorServiceImplement implements AuthorService {
         foundAuthor.get().setSurname(authorEntity.getSurname());
         foundAuthor.get().setDateBirth(authorEntity.getDateBirth());
         foundAuthor.get().setLocalBirth(authorEntity.getLocalBirth());
-
-        authorCategoryRepository.save(foundAuthor.get());
+        foundAuthor.get().setBookAuthorEntity(bookRepository.findById(authorEntity.getBookAuthorEntity().getIdBook())
+                .orElseThrow(()-> new EntityNotFoundException("Libro non trovato")));
 
         return foundAuthor;
     }

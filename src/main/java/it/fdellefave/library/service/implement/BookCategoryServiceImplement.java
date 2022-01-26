@@ -28,7 +28,8 @@ public class BookCategoryServiceImplement implements BookCategoryService {
 
     @Override
     public BookCategoryEntity create(BookCategoryEntity bookCategory) {
-        BookCategoryEntity bookCategoryCreate = new BookCategoryEntity(bookCategory.getCategory());
+        BookCategoryEntity bookCategoryCreate =
+                new BookCategoryEntity(bookCategory.getCategory());
         return bookCategoryRepository.save(bookCategoryCreate);
     }
 

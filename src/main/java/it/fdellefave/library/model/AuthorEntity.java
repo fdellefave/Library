@@ -30,34 +30,31 @@ public class AuthorEntity {
 
     // -- ENTITY DECLARATION
 
-    /**
-     * Many to One, perchè ci sono più Autori(many) per un libro(one) e indichiamo la joincolumn, ovvero la colonna
-     * che effettua la join con l'altra ovvero, indico l'fk di book.
-     */
     @ManyToOne
-    @JoinColumn(name = "fk_book")
+    @JoinColumn(name = "fk_book", referencedColumnName = "id_book")
     private BookEntity bookAuthorEntity;
 
 
 
     // -- CONSTRUCTOR
 
-    public AuthorEntity(String name, String surname, Date dateBirth, String localBirth) {
+    public AuthorEntity(String name, String surname, Date dateBirth, String localBirth, BookEntity bookAuthor) {
         this.name = name;
         this.surname = surname;
         this.dateBirth = dateBirth;
         this.localBirth = localBirth;
+        this.bookAuthorEntity = bookAuthor;
     }
 
     public AuthorEntity() {
     }
 
-
-
-    // -- GETTERS AND SETTERS
-
     public int getIdAuthor() {
         return idAuthor;
+    }
+
+    public void setIdAuthor(int idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
     public String getName() {
@@ -96,7 +93,7 @@ public class AuthorEntity {
         return bookAuthorEntity;
     }
 
-    public void setBookAuthorEntity(BookEntity bookEntity) {
-        this.bookAuthorEntity = bookEntity;
+    public void setBookAuthorEntity(BookEntity bookAuthorEntity) {
+        this.bookAuthorEntity = bookAuthorEntity;
     }
 }
