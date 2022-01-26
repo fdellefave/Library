@@ -2,7 +2,7 @@ package it.fdellefave.library.service.implement;
 
 
 import it.fdellefave.library.model.AuthorEntity;
-import it.fdellefave.library.repository.AuthorCategoryRepository;
+import it.fdellefave.library.repository.AuthorRepository;
 import it.fdellefave.library.repository.BookRepository;
 import it.fdellefave.library.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class AuthorServiceImplement implements AuthorService {
 
     @Autowired
-    private AuthorCategoryRepository authorCategoryRepository;
+    private AuthorRepository authorRepository;
 
     @Autowired
     private BookRepository bookRepository;
@@ -23,13 +23,13 @@ public class AuthorServiceImplement implements AuthorService {
 
     public Iterable<AuthorEntity> getAll() {
 
-        return authorCategoryRepository.findAll();
+        return authorRepository.findAll();
     }
 
     @Override
     public Optional<AuthorEntity> getById(int id) {
 
-        return authorCategoryRepository.findById(id);
+        return authorRepository.findById(id);
     }
 
     @Override
@@ -44,13 +44,13 @@ public class AuthorServiceImplement implements AuthorService {
                         .orElseThrow(()-> new EntityNotFoundException("Libro non trovato"))
         );
 
-        return authorCategoryRepository.save(authorCreate);
+        return authorRepository.save(authorCreate);
     }
 
     @Override
     public Optional<AuthorEntity> update(int id, AuthorEntity authorEntity) {
 
-        Optional<AuthorEntity> foundAuthor = authorCategoryRepository.findById(id);
+        Optional<AuthorEntity> foundAuthor = authorRepository.findById(id);
 
         if (!(foundAuthor.isPresent())) {
             return Optional.empty();
@@ -69,10 +69,10 @@ public class AuthorServiceImplement implements AuthorService {
     @Override
     public Boolean delete(int id) {
 
-        Optional<AuthorEntity> foundAuthor = authorCategoryRepository.findById(id);
+        Optional<AuthorEntity> foundAuthor = authorRepository.findById(id);
 
         if (foundAuthor.isPresent()) {
-            authorCategoryRepository.delete(foundAuthor.get());
+            authorRepository.delete(foundAuthor.get());
         }
 
         return false;

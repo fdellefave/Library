@@ -12,7 +12,7 @@ public class RentalEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_rental")
+    @Column(name = "id_rental_book_user")
     private int idRental;
 
     @Column(name = "rental_date")
@@ -34,9 +34,11 @@ public class RentalEntity {
 
     // -- CONSTRUCTOR
 
-    public RentalEntity(Date rentalDate, UserEntity userEntity) {
+
+    public RentalEntity(Date rentalDate, UserEntity userRentalEntity, BookEntity bookRentalEntity) {
         this.rentalDate = rentalDate;
-        this.userRentalEntity = userEntity;
+        this.userRentalEntity = userRentalEntity;
+        this.bookRentalEntity = bookRentalEntity;
     }
 
     public RentalEntity() {
@@ -51,7 +53,6 @@ public class RentalEntity {
         return idRental;
     }
 
-
     public Date getRentalDate() {
         return rentalDate;
     }
@@ -64,15 +65,15 @@ public class RentalEntity {
         return userRentalEntity;
     }
 
-    public void setUserRentalEntity(UserEntity userEntity) {
-        this.userRentalEntity = userEntity;
+    public void setUserRentalEntity(UserEntity userRentalEntity) {
+        this.userRentalEntity = userRentalEntity;
     }
 
-    public BookEntity getBookEntity() {
+    public BookEntity getBookRentalEntity() {
         return bookRentalEntity;
     }
 
-    public void setBookEntity(BookEntity bookEntity) {
-        this.bookRentalEntity = bookEntity;
+    public void setBookRentalEntity(BookEntity bookRentalEntity) {
+        this.bookRentalEntity = bookRentalEntity;
     }
 }
