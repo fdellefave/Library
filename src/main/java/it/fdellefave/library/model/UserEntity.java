@@ -20,7 +20,8 @@ public class UserEntity {
     @Column(name = "surname")
     private String surname;
 
-
+    @Column(name = "balance")
+    private Double balance;
 
 
     // -- ENTITY DECLARATION
@@ -29,23 +30,27 @@ public class UserEntity {
     private List<RentalEntity> rentalEntityList;
 
 
-
     // -- CONSTRUCTOR
 
-    public UserEntity(String name, String surname) {
+    public UserEntity(String name, String surname, Double balance) {
         this.name = name;
         this.surname = surname;
+        this.balance = balance;
     }
+
 
     public UserEntity() {
     }
-
 
 
     // -- GETTERS AND SETTERS
 
     public int getIdUser() {
         return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
@@ -62,6 +67,14 @@ public class UserEntity {
 
     public void setSurname(String surname) {
         this.surname = surname;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
     }
 
     public List<RentalEntity> getRentalEntityList() {

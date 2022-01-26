@@ -23,11 +23,11 @@ public class RentalEntity {
     // -- ENTITY DECLARATION
 
     @ManyToOne
-    @JoinColumn(name = "fk_user")
+    @JoinColumn(name = "fk_user", referencedColumnName = "id_user")
     private UserEntity userRentalEntity;
 
     @ManyToOne
-    @JoinColumn(name = "fk_book")
+    @JoinColumn(name = "fk_book", referencedColumnName = "id_book")
     private BookEntity bookRentalEntity;
 
 

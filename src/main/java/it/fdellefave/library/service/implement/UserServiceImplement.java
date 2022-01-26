@@ -29,7 +29,8 @@ public class UserServiceImplement implements UserService {
 
         UserEntity userEntityCreate = new UserEntity(
                 userEntity.getName(),
-                userEntity.getSurname()
+                userEntity.getSurname(),
+                userEntity.getBalance()
         );
 
         return repository.save(userEntityCreate);
@@ -46,6 +47,7 @@ public class UserServiceImplement implements UserService {
 
         userFound.get().setName(userEntity.getName());
         userFound.get().setSurname(userEntity.getSurname());
+        userFound.get().setBalance(userEntity.getBalance());
 
         repository.save(userFound.get());
 
