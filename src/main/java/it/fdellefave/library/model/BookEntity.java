@@ -1,11 +1,18 @@
 package it.fdellefave.library.model;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "book")
+@Getter
+@Setter
+@NoArgsConstructor
 public class BookEntity {
 
     // -- FIELD DECLARATION
@@ -31,7 +38,7 @@ public class BookEntity {
     // -- ENTITY DECLARATION
 
     @ManyToOne()
-    @JoinColumn(name = "fk_book_category",referencedColumnName = "id_book_category")
+    @JoinColumn(name = "fk_book_category", referencedColumnName = "id_book_category")
     private BookCategoryEntity bookCategoryEntity;
 
     @OneToMany(mappedBy = "bookAuthorEntity")
@@ -51,75 +58,17 @@ public class BookEntity {
         this.bookCategoryEntity = bookCategory;
     }
 
-    public BookEntity() {
-    }
-
-
-
-    // -- GETTERS AND SETTERS
-
-    public int getIdBook() {
-        return idBook;
-    }
-
-    public void setIdBook(int idBook) {
+    public BookEntity(int idBook, String title, Double price, String description, int quantity,
+                      BookCategoryEntity bookCategoryEntity, List<AuthorEntity> authorEntityList,
+                      List<RentalEntity> rentalEntityList) {
         this.idBook = idBook;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-
-    public BookCategoryEntity getBookCategoryEntity() {
-        return bookCategoryEntity;
-    }
-
-    public void setBookCategoryEntity(BookCategoryEntity bookCategoryEntity) {
         this.bookCategoryEntity = bookCategoryEntity;
-    }
-
-    public List<AuthorEntity> getAuthorEntityList() {
-        return authorEntityList;
-    }
-
-    public void setAuthorEntityList(List<AuthorEntity> authorEntityList) {
         this.authorEntityList = authorEntityList;
-    }
-
-    public List<RentalEntity> getRentalEntityList() {
-        return rentalEntityList;
-    }
-
-    public void setRentalEntityList(List<RentalEntity> rentalEntityList) {
         this.rentalEntityList = rentalEntityList;
     }
+
 }

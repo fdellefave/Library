@@ -1,6 +1,6 @@
 package it.fdellefave.library.controller;
 
-import it.fdellefave.library.model.BookEntity;
+import it.fdellefave.library.api.BookApi;
 import it.fdellefave.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,33 +13,32 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/book")
-public class BookController implements Controller<BookEntity>{
+public class BookProvaApiController implements Controller<BookApi>{
 
-    @Autowired
-    private BookService service;
+
 
     @GetMapping("/getAll")
-    public Iterable<BookEntity> getAll() {
+    public Iterable<BookApi> getAll() {
 
         return service.getAll();
     }
 
     @GetMapping("/getById/{id}")
-    public Optional<BookEntity> getById(@PathVariable int id) {
+    public Optional<BookApi> getById(@PathVariable int id) {
 
         return service.getById(id);
     }
 
 
     @PostMapping("/create")
-    public BookEntity create(@RequestBody BookEntity book) {
+    public BookApi create(@RequestBody BookApi book) {
 
         return service.create(book);
     }
 
 
     @PutMapping("/update/{id}")
-    public BookEntity update(@RequestBody BookEntity book, @PathVariable int id) {
+    public BookApi update(@RequestBody BookApi book, @PathVariable int id) {
 
         return service.update(id, book).get();
     }
