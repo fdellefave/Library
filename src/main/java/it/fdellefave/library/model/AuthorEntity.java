@@ -56,7 +56,7 @@ public class AuthorEntity {
 
     // -- GETTERs & SETTERs
 
-    @JsonBackReference
+   // @JsonBackReference
     public BookEntity getBookAuthorEntity() {
         return bookAuthorEntity;
     }

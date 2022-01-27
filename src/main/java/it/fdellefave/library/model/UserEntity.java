@@ -50,7 +50,7 @@ public class UserEntity {
 
     // -- GETTERS AND SETTERS
 
-    @JsonManagedReference
+   // @JsonManagedReference
     public List<RentalEntity> getRentalEntityList() {
         return rentalEntityList;
     }

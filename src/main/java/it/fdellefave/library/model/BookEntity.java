@@ -1,8 +1,6 @@
 package it.fdellefave.library.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,6 +37,8 @@ public class BookEntity {
 
     // -- ENTITY DECLARATION
 
+
+
     @ManyToOne
     @JoinColumn(name = "fk_book_category", referencedColumnName = "id_book_category")
     private BookCategoryEntity bookCategoryEntity;
@@ -63,16 +63,16 @@ public class BookEntity {
 
     // -- GETTERs & SETTERs
 
-    @JsonManagedReference
+    //@JsonManagedReference
     public List<AuthorEntity> getAuthorEntityList() {
         return authorEntityList;
     }
-    @JsonManagedReference
+    //@JsonManagedReference
     public List<RentalEntity> getRentalEntityList() {
         return rentalEntityList;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public BookCategoryEntity getBookCategoryEntity() {
         return bookCategoryEntity;
     }

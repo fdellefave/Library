@@ -53,12 +53,12 @@ public class RentalEntity {
 
     // -- GETTERS AND SETTERS
 
-    @JsonBackReference
+    //@JsonBackReference
     public UserEntity getUserRentalEntity() {
         return userRentalEntity;
     }
 
-    @JsonBackReference
+    //@JsonBackReference
     public BookEntity getBookRentalEntity() {
         return bookRentalEntity;
     }

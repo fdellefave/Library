@@ -1,6 +1,5 @@
 package it.fdellefave.library.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,7 +29,7 @@ public class BookCategoryEntity {
     // -- ENTITY DECLARATION
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bookCategoryEntity")
-    private List<BookEntity> bookEntityList;
+    private List<BookEntity> bookEntity;
 
 
 
@@ -42,8 +41,8 @@ public class BookCategoryEntity {
 
     // -- GETTERS AND SETTERS
 
-    @JsonManagedReference
-    public List<BookEntity> getBookEntityList() {
-        return bookEntityList;
+    //@JsonManagedReference
+    public List<BookEntity> getBookEntity() {
+        return bookEntity;
     }
 }
