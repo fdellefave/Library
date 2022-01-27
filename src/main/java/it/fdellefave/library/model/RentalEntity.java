@@ -1,11 +1,19 @@
 package it.fdellefave.library.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "rental_book_user")
+@Getter
+@Setter
+@NoArgsConstructor
 public class RentalEntity {
 
     // -- FIELD DECLARATION
@@ -41,39 +49,19 @@ public class RentalEntity {
         this.bookRentalEntity = bookRentalEntity;
     }
 
-    public RentalEntity() {
-    }
-
 
 
     // -- GETTERS AND SETTERS
 
-
-    public int getIdRental() {
-        return idRental;
-    }
-
-    public Date getRentalDate() {
-        return rentalDate;
-    }
-
-    public void setRentalDate(Date rentalDate) {
-        this.rentalDate = rentalDate;
-    }
-
+    @JsonBackReference
     public UserEntity getUserRentalEntity() {
         return userRentalEntity;
     }
 
-    public void setUserRentalEntity(UserEntity userRentalEntity) {
-        this.userRentalEntity = userRentalEntity;
-    }
-
+    @JsonBackReference
     public BookEntity getBookRentalEntity() {
         return bookRentalEntity;
     }
 
-    public void setBookRentalEntity(BookEntity bookRentalEntity) {
-        this.bookRentalEntity = bookRentalEntity;
-    }
+
 }

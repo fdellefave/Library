@@ -1,10 +1,18 @@
 package it.fdellefave.library.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "author")
+@Getter
+@Setter
+@NoArgsConstructor
 public class AuthorEntity {
 
     // -- FIELD DECLARATION
@@ -46,54 +54,11 @@ public class AuthorEntity {
         this.bookAuthorEntity = bookAuthor;
     }
 
-    public AuthorEntity() {
-    }
+    // -- GETTERs & SETTERs
 
-    public int getIdAuthor() {
-        return idAuthor;
-    }
-
-    public void setIdAuthor(int idAuthor) {
-        this.idAuthor = idAuthor;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Date getDateBirth() {
-        return dateBirth;
-    }
-
-    public void setDateBirth(Date dateBirth) {
-        this.dateBirth = dateBirth;
-    }
-
-    public String getLocalBirth() {
-        return localBirth;
-    }
-
-    public void setLocalBirth(String localBirth) {
-        this.localBirth = localBirth;
-    }
-
+    @JsonBackReference
     public BookEntity getBookAuthorEntity() {
         return bookAuthorEntity;
     }
 
-    public void setBookAuthorEntity(BookEntity bookAuthorEntity) {
-        this.bookAuthorEntity = bookAuthorEntity;
-    }
 }

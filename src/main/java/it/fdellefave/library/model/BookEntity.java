@@ -1,6 +1,8 @@
 package it.fdellefave.library.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,14 +39,14 @@ public class BookEntity {
 
     // -- ENTITY DECLARATION
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "fk_book_category", referencedColumnName = "id_book_category")
     private BookCategoryEntity bookCategoryEntity;
 
-    @OneToMany(mappedBy = "bookAuthorEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "bookAuthorEntity")
     private List<AuthorEntity> authorEntityList;
 
-    @OneToMany(mappedBy = "bookRentalEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bookRentalEntity")
     private List<RentalEntity> rentalEntityList;
 
 
@@ -58,17 +60,20 @@ public class BookEntity {
         this.bookCategoryEntity = bookCategory;
     }
 
-    public BookEntity(int idBook, String title, Double price, String description, int quantity,
-                      BookCategoryEntity bookCategoryEntity, List<AuthorEntity> authorEntityList,
-                      List<RentalEntity> rentalEntityList) {
-        this.idBook = idBook;
-        this.title = title;
-        this.price = price;
-        this.description = description;
-        this.quantity = quantity;
-        this.bookCategoryEntity = bookCategoryEntity;
-        this.authorEntityList = authorEntityList;
-        this.rentalEntityList = rentalEntityList;
+
+    // -- GETTERs & SETTERs
+
+    @JsonManagedReference
+    public List<AuthorEntity> getAuthorEntityList() {
+        return authorEntityList;
+    }
+    @JsonManagedReference
+    public List<RentalEntity> getRentalEntityList() {
+        return rentalEntityList;
     }
 
+    @JsonBackReference
+    public BookCategoryEntity getBookCategoryEntity() {
+        return bookCategoryEntity;
+    }
 }

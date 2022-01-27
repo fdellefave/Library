@@ -31,7 +31,7 @@ public class BookController implements Controller<BookEntity>{
     }
 
 
-    @PostMapping("/create")
+    @PostMapping(value = "/create", consumes={"application/json"})
     public BookEntity create(@RequestBody BookEntity book) {
 
         return service.create(book);

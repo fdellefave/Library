@@ -1,10 +1,18 @@
 package it.fdellefave.library.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "tpl_book_category")
+@Getter
+@Setter
+@NoArgsConstructor
 public class BookCategoryEntity {
 
     // -- FIELD DECLARATION
@@ -21,7 +29,7 @@ public class BookCategoryEntity {
 
     // -- ENTITY DECLARATION
 
-    @OneToMany(mappedBy = "bookCategoryEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bookCategoryEntity")
     private List<BookEntity> bookEntityList;
 
 
@@ -32,31 +40,10 @@ public class BookCategoryEntity {
         this.category = category;
     }
 
-    public BookCategoryEntity() {
-    }
-
-
-
     // -- GETTERS AND SETTERS
 
-    public int getIdBookCategory() {
-        return idBookCategory;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
+    @JsonManagedReference
     public List<BookEntity> getBookEntityList() {
         return bookEntityList;
     }
-
-    public void setBookEntityList(List<BookEntity> bookEntityList) {
-        this.bookEntityList = bookEntityList;
-    }
-
 }

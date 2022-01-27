@@ -1,10 +1,18 @@
 package it.fdellefave.library.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
+@NoArgsConstructor
 public class UserEntity {
 
     // -- FIELD DECLARATION
@@ -26,7 +34,7 @@ public class UserEntity {
 
     // -- ENTITY DECLARATION
 
-    @OneToMany(mappedBy = "userRentalEntity")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "userRentalEntity")
     private List<RentalEntity> rentalEntityList;
 
 
@@ -39,49 +47,12 @@ public class UserEntity {
     }
 
 
-    public UserEntity() {
-    }
-
 
     // -- GETTERS AND SETTERS
 
-    public int getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
+    @JsonManagedReference
     public List<RentalEntity> getRentalEntityList() {
         return rentalEntityList;
     }
 
-    public void setRentalEntityList(List<RentalEntity> rentalEntityList) {
-        this.rentalEntityList = rentalEntityList;
-    }
 }
