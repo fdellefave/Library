@@ -6,8 +6,8 @@ create table book
     description      text         null,
     price            double       null,
     quantity         int          not null,
-    fk_book_category int          not null,
-    constraint book_tpl_categoria_libro_id_categoria_libro_fk
+    fk_book_category int          null,
+    constraint book_tpl_book_category_id_book_category_fk
         foreign key (fk_book_category) references tpl_book_category (id_book_category)
 );
 
