@@ -13,9 +13,6 @@ import java.util.List;
 @Component
 public class BookNumberAdapter {
 
-    private int idBookNumber;
-    private int isbnCode;
-
 
     @Autowired
     private BookNumberService service;
@@ -24,8 +21,8 @@ public class BookNumberAdapter {
 
         //creo un entity da un'api
         BookNumberEntity requestEntity = new BookNumberEntity(
-                requestAPI.getIsbnCode(),
-                requestAPI.getBookEntity());
+                requestAPI.getIsbnCode()
+        );
 
         //passo entity al service che ritorna un entity
         BookNumberEntity responseEntity = service.create(requestEntity);
@@ -33,8 +30,7 @@ public class BookNumberAdapter {
         //creo un api dalla responseEntity che arriva dal service
         BookNumberApi responseApi = new BookNumberApi(
                 responseEntity.getIdBookNumber(),
-                responseEntity.getIsbnCode(),
-                responseEntity.getBookEntity()
+                responseEntity.getIsbnCode()
         );
         //ritorno l'api.
         return responseApi;
@@ -54,8 +50,7 @@ public class BookNumberAdapter {
             BookNumberEntity entity = iter.next();
             BookNumberApi bookNumber = new BookNumberApi(
                     entity.getIdBookNumber(),
-                    entity.getIsbnCode(),
-                    entity.getBookEntity()
+                    entity.getIsbnCode()
             );
             responseApi.add(bookNumber);
         }

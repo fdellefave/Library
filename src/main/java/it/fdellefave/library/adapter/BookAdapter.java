@@ -24,7 +24,9 @@ public class BookAdapter {
                 requestAPI.getDescription(),
                 requestAPI.getPrice(),
                 requestAPI.getQuantity(),
-                requestAPI.getBookCategoryEntity());
+                requestAPI.getBookCategoryEntity(),
+                requestAPI.getBookNumberEntity()
+                );
 
         //passo entity al service che ritorna un entity
         BookEntity responseEntity = service.create(requestEntity);
@@ -36,7 +38,8 @@ public class BookAdapter {
                 responseEntity.getDescription(),
                 responseEntity.getPrice(),
                 responseEntity.getQuantity(),
-                responseEntity.getBookCategoryEntity()
+                responseEntity.getBookCategoryEntity(),
+                responseEntity.getBookNumberEntity()
                 );
         //ritorno l'api.
         return responseApi;
@@ -60,7 +63,8 @@ public class BookAdapter {
                     entity.getDescription(),
                     entity.getPrice(),
                     entity.getQuantity(),
-                    entity.getBookCategoryEntity()
+                    entity.getBookCategoryEntity(),
+                    entity.getBookNumberEntity()
             );
            responseApi.add(book);
         }

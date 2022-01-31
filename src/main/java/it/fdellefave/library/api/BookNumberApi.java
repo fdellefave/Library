@@ -13,19 +13,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class BookNumberApi {
 
-
     private int idBookNumber;
 
     private String isbnCode;
 
-    private int fkBook;
-
-    private BookEntity bookEntity;
-
-
-    public BookNumberApi(int idBookNumber, String isbnCode, BookEntity bookEntity) {
+    public BookNumberApi(int idBookNumber, String isbnCode) {
         this.idBookNumber = idBookNumber;
         this.isbnCode = isbnCode;
-        this.fkBook = bookEntity.getIdBook();
     }
 }

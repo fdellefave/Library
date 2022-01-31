@@ -2,6 +2,7 @@ package it.fdellefave.library.service.implement;
 
 import it.fdellefave.library.model.BookEntity;
 import it.fdellefave.library.repository.BookCategoryRepository;
+import it.fdellefave.library.repository.BookNumberRepository;
 import it.fdellefave.library.repository.BookRepository;
 import it.fdellefave.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class BookServiceImplement implements BookService {
 
     @Autowired
     private BookCategoryRepository bookCategoryRepo;
+
+    @Autowired
+    private BookNumberRepository bookNumberRepo;
 
 
 
@@ -41,7 +45,9 @@ public class BookServiceImplement implements BookService {
                 book.getPrice(),
                 book.getQuantity(),
                 bookCategoryRepo.findById(book.getBookCategoryEntity().getIdBookCategory())
-                        .orElseThrow(()->new EntityNotFoundException("Categoria non trovata"))
+                        .orElseThrow(()-> new EntityNotFoundException("Categoria non trovata")),
+                bookNumberRepo.findById(book.getBookNumberEntity().getIdBookNumber())
+                        .orElseThrow(()-> new EntityNotFoundException("ISBN non trovato"))
         );
 
         return bookRepository.save(bookCreate);
@@ -63,6 +69,8 @@ public class BookServiceImplement implements BookService {
         foundBook.get().setQuantity(book.getQuantity());
         foundBook.get().setBookCategoryEntity(bookCategoryRepo.findById(book.getBookCategoryEntity().getIdBookCategory())
                 .orElseThrow(()->new EntityNotFoundException("Categoria non trovata")));
+        foundBook.get().setBookNumberEntity(bookNumberRepo.findById(book.getBookNumberEntity().getIdBookNumber())
+                .orElseThrow(()-> new EntityNotFoundException("ISBN non trovato")));
 
         bookRepository.save(foundBook.get());
 
@@ -84,12 +92,3 @@ public class BookServiceImplement implements BookService {
 
 
 
-      /* public String provaMetodo(){
-        bookRepository.prenotaLibroRepository();
-
-        //nel bookRepository devo fare la query per accedere ai dati instanziando un metodo, poi lo richiamo in un metodo del service
-        //da quale farò la logica per accedere ai dati corretti, quel metodo poi verra chiamato dal controller per visualizzarlo.
-
-       return null;
-    }
-*/

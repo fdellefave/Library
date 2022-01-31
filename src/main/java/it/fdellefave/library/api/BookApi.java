@@ -1,6 +1,7 @@
 package it.fdellefave.library.api;
 
 import it.fdellefave.library.model.BookCategoryEntity;
+import it.fdellefave.library.model.BookNumberEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,24 +26,25 @@ public class BookApi {
 
     private int idCategory;
 
+    private int idBookNumber;
 
     // -- ENTITY DECLARATION
 
     private BookCategoryEntity bookCategoryEntity;
-//
-//    private List<AuthorEntity> authorEntityList;
-//
-//    private List<RentalEntity> rentalEntityList;
+
+    private BookNumberEntity bookNumberEntity;
 
     // -- CONSTRUCTOR
 
-    public BookApi(int idBook, String title, String description, Double price, int quantity, BookCategoryEntity bookCategoryEntity) {
+    public BookApi(int idBook, String title, String description, Double price,
+                   int quantity, BookCategoryEntity bookCategoryEntity, BookNumberEntity bookNumberEntity) {
         this.idBook = idBook;
         this.title = title;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.idCategory = bookCategoryEntity.getIdBookCategory();
+        this.idBookNumber = bookNumberEntity.getIdBookNumber();
     }
 
 

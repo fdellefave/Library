@@ -7,7 +7,6 @@ import it.fdellefave.library.service.BookNumberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -16,8 +15,6 @@ public class BookNumberServiceImplement implements BookNumberService {
     @Autowired
     private BookNumberRepository bookNumberRepository;
 
-    @Autowired
-    private BookRepository bookRepository;
 
     @Override
     public Iterable<BookNumberEntity> getAll() {
@@ -33,10 +30,8 @@ public class BookNumberServiceImplement implements BookNumberService {
     public BookNumberEntity create(BookNumberEntity bookNumber) {
 
         BookNumberEntity bookNumberCreate= new BookNumberEntity(
-                bookNumber.getIsbnCode(),
-                bookRepository.findById(bookNumber.getBookEntity().getIdBook())
-                        .orElseThrow(()-> new EntityNotFoundException("Libro non trovato"))
-        );
+                bookNumber.getIsbnCode()
+                );
        return bookNumberRepository.save(bookNumberCreate);
     }
 

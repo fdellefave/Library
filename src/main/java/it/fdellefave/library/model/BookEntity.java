@@ -61,32 +61,31 @@ public class BookEntity {
     private List<RentalEntity> rentalEntityList;
 
     @OneToOne
+    @JoinColumn(name = "fk_book_number", referencedColumnName = "id_book_number")
     private BookNumberEntity bookNumberEntity;
+
 
     // -- CONSTRUCTOR
 
-    public BookEntity(String title, String description, Double price, int quantity, BookCategoryEntity bookCategory) {
+    public BookEntity(String title, String description, Double price, int quantity, BookCategoryEntity bookCategory, BookNumberEntity bookNumberEntity) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.quantity = quantity;
         this.bookCategoryEntity = bookCategory;
+        this.bookNumberEntity = bookNumberEntity;
     }
 
 
-    // -- GETTERs & SETTERs
-
-    //@JsonManagedReference
-    public List<AuthorEntity> getAuthorEntityList() {
-        return authorEntityList;
-    }
-    //@JsonManagedReference
-    public List<RentalEntity> getRentalEntityList() {
-        return rentalEntityList;
-    }
-
-    //@JsonBackReference
-    public BookCategoryEntity getBookCategoryEntity() {
-        return bookCategoryEntity;
-    }
+//    // -- GETTERs & SETTERs
+//
+//    public List<AuthorEntity> getAuthorEntityList() {
+//        return authorEntityList;
+//    }
+//    public List<RentalEntity> getRentalEntityList() {
+//        return rentalEntityList;
+//    }
+//    public BookCategoryEntity getBookCategoryEntity() {
+//        return bookCategoryEntity;
+//    }
 }

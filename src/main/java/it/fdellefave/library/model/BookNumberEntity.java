@@ -37,15 +37,11 @@ public class BookNumberEntity {
 
     // RELATIONAL
 
-    @OneToOne
-    @JoinColumn(name = "fk_book",referencedColumnName = "id_book")
-    private BookEntity bookEntity;
 
     // CONSTRUCTOR
 
-    public BookNumberEntity(String isbnCode, BookEntity bookEntity) {
+    public BookNumberEntity(String isbnCode) {
         this.isbnCode = isbnCode;
-        this.bookEntity = bookEntity;
     }
 
 
