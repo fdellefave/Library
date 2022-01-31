@@ -4,8 +4,11 @@ package it.fdellefave.library.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -21,6 +24,14 @@ public class BookEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_book")
     private int idBook;
+
+    @Column(name = "data_creazione")
+    @UpdateTimestamp
+    private LocalDateTime dataCreazione;
+
+    @Column(name = "data_ultima_modifica")
+    @CreationTimestamp
+    private LocalDateTime dataUltimaModifica;
 
     @Column(name = "title")
     private String title;
@@ -49,6 +60,8 @@ public class BookEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bookRentalEntity")
     private List<RentalEntity> rentalEntityList;
 
+    @OneToOne
+    private BookNumberEntity bookNumberEntity;
 
     // -- CONSTRUCTOR
 

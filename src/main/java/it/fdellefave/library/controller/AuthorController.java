@@ -4,7 +4,6 @@ package it.fdellefave.library.controller;
 import it.fdellefave.library.model.AuthorEntity;
 import it.fdellefave.library.model.BookEntity;
 import it.fdellefave.library.service.AuthorService;
-import it.fdellefave.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

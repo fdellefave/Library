@@ -1,28 +1,29 @@
 package it.fdellefave.library.controller;
 
-import it.fdellefave.library.adapter.BookAdapter;
+import it.fdellefave.library.adapter.BookNumberAdapter;
 import it.fdellefave.library.api.BookApi;
+import it.fdellefave.library.api.BookNumberApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/book/adapter")
-public class BookApiController {
+@RequestMapping("/bookNumber/adapter")
+public class BookNumberApiController {
 
 
     @Autowired
-    private BookAdapter adapter;
+    private BookNumberAdapter adapter;
 
 
     @PostMapping(value = "/create", consumes={"application/json"})
-    public BookApi createAdapter(@RequestBody BookApi bookApi) {
-        return adapter.create(bookApi);
+    public BookNumberApi createAdapter(@RequestBody BookNumberApi bookNumberApi) {
+        return adapter.create(bookNumberApi);
     }
 
     @GetMapping(value = "/getAll")
-    public List<BookApi> getAllAdapter(){
+    public List<BookNumberApi> getAllAdapter(){
         return adapter.getAll();
     }
 }
