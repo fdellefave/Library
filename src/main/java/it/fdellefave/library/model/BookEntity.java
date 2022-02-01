@@ -60,6 +60,8 @@ public class BookEntity {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "bookRentalEntity")
     private List<RentalEntity> rentalEntityList;
 
+
+
     @OneToOne
     @JoinColumn(name = "fk_book_number", referencedColumnName = "id_book_number")
     private BookNumberEntity bookNumberEntity;

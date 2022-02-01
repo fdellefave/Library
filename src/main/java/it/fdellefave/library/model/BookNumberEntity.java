@@ -38,6 +38,17 @@ public class BookNumberEntity {
     // RELATIONAL
 
 
+    //@TODO MappedBy
+    /**
+     * Inserendo mappedBy indichiamo che questa tabella concederà di essere la subordinata del nome del campo instanziato nell'altra
+     * tabella. In questo caso diremo che l'owner è BookEntity e la subordinata è BookNumberEntity. In questo modo le referenze della
+     * tabella saranno in carico a BookEntity. Quindi nella tabella book si creerà una colonna che si chiama fk_book_number che conterrà
+     * i valori di bookNumberEntity o book_number. Se togliamo l'annotazione di mappedBy, jpa provvederà a creare un fk su entrambe le tabelle.
+     */
+
+    @OneToOne(mappedBy = "bookNumberEntity")
+    private BookEntity bookEntity;
+
     // CONSTRUCTOR
 
     public BookNumberEntity(String isbnCode) {
