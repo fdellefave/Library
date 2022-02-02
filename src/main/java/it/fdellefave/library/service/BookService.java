@@ -2,6 +2,7 @@ package it.fdellefave.library.service;
 
 import it.fdellefave.library.model.BookEntity;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface BookService {
@@ -15,6 +16,10 @@ public interface BookService {
     Optional<BookEntity> update(int id, BookEntity bookEntity);
 
     Boolean delete(int id);
+
+    List<BookEntity> iterationBookByClick();
+
+    BookEntity bookIteration();
 
 
 }

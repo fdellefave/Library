@@ -36,7 +36,7 @@ public class BookNumberAdapter {
         return responseApi;
     }
 
-    public List<BookNumberApi> getAll(){
+    public List<BookNumberApi> getAll() {
 
         //instanzio la request entity
         Iterable<BookNumberEntity> requestEntity = service.getAll();
@@ -46,7 +46,7 @@ public class BookNumberAdapter {
         //Creo la lista di ritorno
         List<BookNumberApi> responseApi = new ArrayList<BookNumberApi>();
 
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             BookNumberEntity entity = iter.next();
             BookNumberApi bookNumber = new BookNumberApi(
                     entity.getIdBookNumber(),
@@ -57,4 +57,6 @@ public class BookNumberAdapter {
 
         return responseApi;
     }
+
+
 }

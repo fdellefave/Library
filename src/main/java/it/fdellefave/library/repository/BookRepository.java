@@ -1,11 +1,12 @@
 package it.fdellefave.library.repository;
 
 import it.fdellefave.library.model.BookEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository extends CrudRepository<BookEntity,Integer> {
+public interface BookRepository extends JpaRepository<BookEntity,Integer> {
 
 //    public Book findByDescriptionAndIdOrderOrderByPrice(String description, int id);
 //

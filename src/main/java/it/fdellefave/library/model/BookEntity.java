@@ -50,7 +50,7 @@ public class BookEntity {
 
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_book_category", referencedColumnName = "id_book_category")
     private BookCategoryEntity bookCategoryEntity;
 
@@ -62,7 +62,7 @@ public class BookEntity {
 
 
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_book_number", referencedColumnName = "id_book_number")
     private BookNumberEntity bookNumberEntity;
 

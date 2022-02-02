@@ -25,4 +25,8 @@ public class BookApiController {
     public List<BookApi> getAllAdapter(){
         return adapter.getAll();
     }
+
+    @GetMapping(value = "/iterationBook")
+    public BookApi iterationBook(){ return adapter.iterationBook();}
+
 }

@@ -26,7 +26,7 @@ public class BookAdapter {
                 requestAPI.getQuantity(),
                 requestAPI.getBookCategoryEntity(),
                 requestAPI.getBookNumberEntity()
-                );
+        );
 
         //passo entity al service che ritorna un entity
         BookEntity responseEntity = service.create(requestEntity);
@@ -40,12 +40,12 @@ public class BookAdapter {
                 responseEntity.getQuantity(),
                 responseEntity.getBookCategoryEntity(),
                 responseEntity.getBookNumberEntity()
-                );
+        );
         //ritorno l'api.
         return responseApi;
     }
 
-    public List<BookApi> getAll(){
+    public List<BookApi> getAll() {
 
         //instanzio la request entity
         Iterable<BookEntity> requestEntity = service.getAll();
@@ -55,7 +55,7 @@ public class BookAdapter {
         //Creo la lista di ritorno
         List<BookApi> responseApi = new ArrayList<BookApi>();
 
-        while(iter.hasNext()){
+        while (iter.hasNext()) {
             BookEntity entity = iter.next();
             BookApi book = new BookApi(
                     entity.getIdBook(),
@@ -66,10 +66,52 @@ public class BookAdapter {
                     entity.getBookCategoryEntity(),
                     entity.getBookNumberEntity()
             );
-           responseApi.add(book);
+            responseApi.add(book);
         }
 
         return responseApi;
-        }
+    }
 
+
+    public List<BookApi> iterationBookByClick() {
+        return entityListToApiList(service.iterationBookByClick());
+    }
+
+    public BookApi iterationBook() {
+        return entityToApi(service.bookIteration());
+    }
+
+    private BookApi entityToApi(BookEntity entity) {
+
+            BookApi book = new BookApi(
+                    entity.getIdBook(),
+                    entity.getTitle(),
+                    entity.getDescription(),
+                    entity.getPrice(),
+                    entity.getQuantity(),
+                    entity.getBookCategoryEntity(),
+                    entity.getBookNumberEntity()
+            );
+
+       return book;
+    }
+
+
+    public List<BookApi> entityListToApiList(List<BookEntity> listEntity){
+        List<BookApi> listApi = new ArrayList<BookApi>();
+
+        for (BookEntity entity: listEntity) {
+            BookApi book = new BookApi(
+                    entity.getIdBook(),
+                    entity.getTitle(),
+                    entity.getDescription(),
+                    entity.getPrice(),
+                    entity.getQuantity(),
+                    entity.getBookCategoryEntity(),
+                    entity.getBookNumberEntity()
+            );
+            listApi.add(book);
+        }
+        return listApi;
+    }
 }
